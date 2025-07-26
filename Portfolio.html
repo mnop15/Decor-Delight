@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .portfolio {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 20px;
+    }
+
+    .project {
+        cursor: pointer;
+        margin: 15px;
+        padding: 26px;
+        border: 1px solid #ccc;
+        border-radius: 0px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .project img {
+        width: 460px;
+        height: 280px;
+        border-radius: 4px;
+    }
+
+    .Imageworks {
+        padding-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 20px;
+    }
+
+    .modal img {
+        width: 480px;
+        height: 280px;
+        border-radius: 4px;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: -84px;
+        left: 0;
+        width: 100%;
+        height: 113%;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+        position: relative;
+        top: 45%;
+        transform: translateY(-50%);
+        max-width: 485px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 50px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .Works {
+        padding: 20px;
+    }
+
+    /*for slideshow below header*/
+    .header-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .background-img {
+        position: absolute;
+        object-fit: cover;
+        z-index: 1;
+    }
+
+    .overlay-img {
+        position: absolute;
+        width: 50%;
+        /* Adjust the size of the overlay image as needed */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+    /* for minicards*/
+    .mini-cards-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10vh;
+    }
+
+    .mini-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin: 15px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .mini-card:hover {
+        background-color: #f0f0f0;
+    }
+
+    .mini-card.highlight {
+        background-color: #f0d1bf;
+        color: rgb(1, 1, 1);
+    }
+
+    .mincards-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 25vh;
+        padding-top: 20px;
+    }
+
+    .mincard {
+        background-color: #fff;
+        border-radius: 0px;
+        box-shadow: 0 0 5px rgb(0 0 0 / 70%);
+        padding: 0px;
+        margin: 38px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+</style>
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Decor Delight</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- responsive-->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- awesome fontfamily -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<!-- body -->
+
+<body class="main-layout inner_page">
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="images/loading.gif" alt="" /></div>
+    </div>
+    <!-- end loader -->
+    <div id="mySidepanel" class="sidepanel">
+        <a style="font-weight: bolder;" href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a style="font-weight: bolder;" href="Home.html">Home</a>
+        <a style="font-weight: bolder;" href="about.html">About</a>
+        <a style="font-weight: bolder;" href="services.html">Services</a>
+        <a style="font-weight: bolder;" href="contact.html">Contact</a>
+    </div>
+    <!-- header -->
+    <header>
+        <!-- header inner -->
+        <div class="head-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="logo">
+                            <a href="index.html"><img src=images/logo.png width="500px" height="250px" /></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <ul class="email text_align_right">
+                            <li style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight: bold;"
+                                class="d_none"> <a href="logreg.html">Login <i class="fa fa-user"
+                                        aria-hidden="true"></i></a> </li>
+                            <li> <button class="openbtn" onclick="openNav()"><img src="images/menu_btn.png"></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header -->
+
+    <div class="Portfolio">
+        <section class="portfolio">
+            <section id="section0" class="design-section">
+
+                <h2 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-align: center;font-size: 40px;
+                    font-weight: 700;
+                    line-height: 46px;
+                    color: #251d12;
+                    text-transform: uppercase; padding-top: 40px;">
+                    What Sets Us Apart?</h2>
+                <div class="mincards-container">
+                    <div class="mincard" id="card1">
+                        <p style="text-align: center;color: #350f0fe0;padding: 20px;"><strong>Innovation at the
+                                Core</strong><br> We
+                            embrace cutting-edge technologies and stay ahead of industry trends.</p>
+                    </div>
+                    <div class="mincard" id="card2">
+                        <p style="text-align: center;color: #350f0fe0;padding: 20px;"><strong> Approach</strong><br>
+                             We prioritize understanding your needs and exceeding expectations.</p>
+                    </div>
+                    <div class="mincard" id="card3">
+                        <p style="text-align: center;color: #350f0fe0;padding: 20px;"><strong>Team</strong><br> Our
+                            diverse team
+                            brings together talent, experience, and a shared commitment to excellence.</p>
+                    </div>
+                    <!-- Add more mini cards as needed -->
+                </div>
+            </section>
+
+            <div class="Imageworks">
+                <div style="background-color: rgb(244 244 244);" class="project" onclick="openModal('project1')">
+                    <img src="images/Port1.jpg" alt="Project 1 Thumbnail">
+                    <h2 style="padding: 5px;">Modern Living Room</h2>
+                    <p>Residential | Contemporary | Completed: July 2022</p>
+                </div>
+
+                <div style="background-color: rgb(244 244 244);" class="project" onclick="openModal('project2')">
+                    <img src="images/Port6.jpg" alt="Project 2 Thumbnail">
+                    <h2 style="padding: 5px;">Elegant Office Space</h2>
+                    <p>Commercial | Classic | Completed: March 2021</p>
+                </div>
+
+                <div style="background-color: rgb(244 244 244);" class="project" onclick="openModal('project3')">
+                    <img src="images/Port3.jpg" alt="Project 3 Thumbnail">
+                    <h2 style="padding: 5px;">Modern Kitchen</h2>
+                    <p>Residential | Contemporary | Completed: July 2023</p>
+                </div>
+
+                <div style="background-color: rgb(244 244 244);" class="project" onclick="openModal('project4')">
+                    <img src="images/Port2.jpg" alt="Project 4 Thumbnail">
+                    <h2 style="padding: 5px;">Modern Bedroom</h2>
+                    <p>Residential | Contemporary | Completed: July 2019</p>
+                </div>
+
+                <div style="background-color: rgb(244 244 244);" class="project" onclick="openModal('project5')">
+                    <img src="images/Port5.jpeg" alt="Project 5 Thumbnail">
+                    <h2 style="padding: 5px;">Modern Office</h2>
+                    <p>Commercial | Classic | Completed: March 2022</p>
+                </div>
+
+                <div style="background-color: rgb(244 244 244);" class="project" onclick="openModal('project6')">
+                    <img src="images/Port8.jpg" alt="Project 6 Thumbnail">
+                    <h2 style="padding: 5px;">Modern Living Room</h2>
+                    <p>Residential | Contemporary | Completed: July 2023</p>
+                </div>
+
+                <!-- Add more projects as needed -->
+
+                <!-- Project Modals -->
+                <div id="project1Modal" class="modal">
+                    <span class="close" onclick="closeModal('project1')">&times;</span>
+                    <div class="modal-content">
+                        <div class="Works">
+                            <h2>Modern Living Room</h2>
+                            <p>Residential | Contemporary | Completed: July 2022</p>
+                            <img src="images/Port1.jpg" alt="Project 1">
+                            <p>This modern living room design represents a fusion of sophistication and comfort. <br>
+                                Clean
+                                lines, a
+                                neutral color palette, and carefully selected furnishings create an inviting space with
+                                a
+                                touch
+                                of luxury. The contemporary aesthetic is enhanced by strategic lighting, resulting in a
+                                harmonious living space that perfectly aligns with the modern lifestyle of our clients.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="project2Modal" class="modal">
+                    <span class="close" onclick="closeModal('project2')">&times;</span>
+                    <div class="modal-content">
+                        <div class="Works">
+                            <h2>Elegant Office Space</h2>
+                            <p>Commercial | Classic | Completed: March 2021</p>
+                            <img src="images/Port6.jpg" alt="Project 2">
+                            <p>Our design for this elegant office space seamlessly blends timeless sophistication with
+                                functionality. Classic architectural elements, including rich wood paneling and coffered
+                                ceilings, set the tone for a professional environment. The carefully chosen color scheme
+                                and
+                                furniture selection create a workspace that is not only visually stunning but also
+                                conducive
+                                to
+                                productivity. This project exemplifies our ability to transform commercial spaces into
+                                refined,
+                                inspiring, and functional areas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="project3Modal" class="modal">
+                    <span class="close" onclick="closeModal('project3')">&times;</span>
+                    <div class="modal-content">
+                        <div class="Works">
+                            <h2>Modern Kitchen</h2>
+                            <p>Residential | Contemporary | Completed: July 2023</p>
+                            <img src="images/Port3.jpg" alt="Project 3">
+                            <p>This modern Kitchen design represents a fusion of sophistication and comfort. Clean
+                                lines, a
+                                neutral color palette, and carefully selected furnishings create an inviting space with
+                                a
+                                touch
+                                of luxury. The contemporary aesthetic is enhanced by strategic lighting, resulting in a
+                                harmonious space that perfectly aligns with the modern lifestyle of our clients.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="project4Modal" class="modal">
+                    <span class="close" onclick="closeModal('project4')">&times;</span>
+                    <div class="modal-content">
+                        <div class="Works">
+                            <h2>Modern Bedroom</h2>
+                            <p>Residential | Contemporary | Completed: July 2019</p>
+                            <img src="images/Port2.jpg" alt="Project 4">
+                            <p>This modern bedroom design represents a fusion of sophistication and comfort. Clean
+                                lines, a
+                                neutral color palette, and carefully selected furnishings create an inviting space with
+                                a
+                                touch
+                                of luxury. The contemporary aesthetic is enhanced by strategic lighting, resulting in a
+                                harmonious bed space that perfectly aligns with the modern lifestyle of our clients.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="project5Modal" class="modal">
+                    <span class="close" onclick="closeModal('project5')">&times;</span>
+                    <div class="modal-content">
+                        <div class="Works">
+                            <h2>Modern Office</h2>
+                            <p>Commercial | Classic | Completed: March 2022</p>
+                            <img src="images/Port5.jpeg" alt="Project 5">
+                            <p>Our design for this elegant office space seamlessly blends timeless sophistication with
+                                functionality. Classic architectural elements, including rich wood paneling and coffered
+                                ceilings, set the tone for a professional environment. The carefully chosen color scheme
+                                and
+                                furniture selection create a workspace that is not only visually stunning but also
+                                conducive
+                                to
+                                productivity. This project exemplifies our ability to transform commercial spaces into
+                                refined,
+                                inspiring, and functional areas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="project6Modal" class="modal">
+                    <span class="close" onclick="closeModal('project6')">&times;</span>
+                    <div class="modal-content">
+                        <div class="Works">
+                            <h2>Modern Living Room</h2>
+                            <p>Residential | Contemporary | Completed: July 2023</p>
+                            <img src="images/Port8.jpg" alt="Project 6">
+                            <p>This modern living room design represents a fusion of sophistication and comfort. Clean
+                                lines, a
+                                neutral color palette, and carefully selected furnishings create an inviting space with
+                                a
+                                touch
+                                of luxury. The contemporary aesthetic is enhanced by strategic lighting, resulting in a
+                                harmonious living space that perfectly aligns with the modern lifestyle of our clients.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more modals as needed -->
+        </section>
+        <script>
+            function openModal(projectId) {
+    var modal = document.getElementById(projectId + 'Modal');
+    modal.style.display = 'block';
+}
+
+function closeModal(projectId) {
+    var modal = document.getElementById(projectId + 'Modal');
+    modal.style.display = 'none';
+}
+
+// Close modal when clicking outside the modal content
+window.onclick = function(event) {
+    var modals = document.getElementsByClassName('modal');
+    for (var i = 0; i < modals.length; i++) {
+        if (event.target == modals[i]) {
+            modals[i].style.display = 'none';
+        }
+    }
+};
+
+        </script>
+    </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <ul class="social_icon text_align_center">
+                            <li> <a href="https://www.facebook.com/login"><i class="fa fa-facebook-f"></i></a></li>
+                            <li> <a href="https://twitter.com/login"><i class="fa fa-twitter"></i></a></li>
+                            <li> <a href="https://in.linkedin.com/"><i class="fa fa-linkedin-square"
+                                        aria-hidden="true"></i></a></li>
+                            <li> <a href="https://www.instagram.com/accounts/login/?hl=en"><i class="fa fa-instagram"
+                                        aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="reader">
+                            <a href="index.html"><img src=images/logo.png alt="#" width="280px" height="250px" /></a>
+                            <p class="padd_flet40">We are a passionate team of interior designers dedicated to turning
+                                your
+                                vision into reality. Whether it's your home, office, or commercial space, we specialize
+                                in
+                                creating interiors that reflect your style and enhance your lifestyle.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="reader">
+                            <h3 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;">Explore
+                            </h3>
+                            <ul class="xple_menu">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="services.html">Services</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="reader">
+                            <h3 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;">Recent
+                                Posts
+                            </h3>
+                            <ul class="re_post">
+                                <li><img src="images/re_img1.jpg" alt="" /></li>
+                                <li><img src="images/re_img2.jpg" alt="" /></li>
+                                <li><img src="images/re_img3.jpg" alt="" /></li>
+                                <li><img src="images/re_img4.jpg" alt="" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="reader">
+                            <h3 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;">Contact
+                                Us</h3>
+                            <p>We'd love to hear from you! Whether you have a project in mind or just want to say hello,
+                                feel
+                                free to reach out to us. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text_align_center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <p>Copyright 2024 All Right Reserved By <a href="https://html.design/"> Decor Delight
+
+                                </a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+    <!-- Javascript files-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+</body>
+
+</html>
